@@ -1,4 +1,4 @@
-import saveFile from 'save-file';
+// import saveFile from 'save-file';
 import listContent from 'list-github-dir-content';
 
 // Matches '/<re/po>/tree/<ref>/<dir>'
@@ -85,7 +85,7 @@ async function getZIP() {
 	return new JSZip();
 }
 
-async function init() {
+async function init(u) {
 	const zip = getZIP();
 	let user;
 	let repository;
@@ -93,8 +93,8 @@ async function init() {
 	let dir;
 
 	try {
-		const query = new URLSearchParams(location.search);
-		const parsedUrl = new URL(query.get('url'));
+		// const query = new URLSearchParams(location.search);
+		const parsedUrl = new URL(u);
 		[, user, repository, ref, dir] = urlParserRegex.exec(parsedUrl.pathname);
 
 		console.log('Source:', {user, repository, ref, dir});
@@ -199,12 +199,15 @@ async function init() {
 		type: 'blob'
 	});
 
-	await saveFile(zipBlob, `${user} ${repository} ${ref} ${dir}.zip`.replace(/\//, '-'));
-	updateStatus(`Downloaded ${downloaded} files! Done!`);
+	// await saveFile(zipBlob, `${user} ${repository} ${ref} ${dir}.zip`.replace(/\//, '-'));
+	// updateStatus(`Downloaded ${downloaded} files! Done!`);
+  
+  return zipBlob;
 }
+export default init;
 
-init();
+// init();
 
-window.addEventListener('load', () => {
+/* window.addEventListener('load', () => {
 	navigator.serviceWorker.register('service-worker.js');
-});
+}); */
