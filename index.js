@@ -168,18 +168,23 @@ async function init(u) {
 		downloaded++;
 		updateStatus(`Downloading (${downloaded}/${files.length}) files…`, file.path);
 
-		(await zip).file(file.path.replace(dir + '/', ''), blob, {
+    return {
+      path: file.path.replace(dir + '/', ''),
+      blob,
+    };
+		/* (await zip).file(file.path.replace(dir + '/', ''), blob, {
 			binary: true
-		});
+		}); */
 	};
 
 	if (repoIsPrivate) {
 		await waitForToken();
 	}
 
-	try {
-		await Promise.all(files.map(download));
-	} catch (error) {
+	// try {
+		const results = await Promise.all(files.map(download));
+    return results;
+	/* } catch (error) {
 		controller.abort();
 
 		if (!navigator.onLine) {
@@ -191,18 +196,18 @@ async function init(u) {
 		}
 
 		throw error;
-	}
+	} */
 
-	updateStatus(`Zipping ${downloaded} files…`);
+	// updateStatus(`Zipping ${downloaded} files…`);
 
-	const zipBlob = await (await zip).generateAsync({
+	/* const zipBlob = await (await zip).generateAsync({
 		type: 'blob'
-	});
+	}); */
 
 	// await saveFile(zipBlob, `${user} ${repository} ${ref} ${dir}.zip`.replace(/\//, '-'));
 	// updateStatus(`Downloaded ${downloaded} files! Done!`);
   
-  return zipBlob;
+  // return zipBlob;
 }
 export default init;
 
