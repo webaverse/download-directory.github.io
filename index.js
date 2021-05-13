@@ -5,6 +5,7 @@ import listContent from 'list-github-dir-content';
 const urlParserRegex = /^[/]([^/]+)[/]([^/]+)[/]tree[/]([^/]+)[/](.*)/;
 
 function updateStatus(status, ...extra) {
+  return;
 	const element = document.querySelector('.status');
 	element.innerHTML = status || `
 		<strong>download-directory • github • io</strong>
