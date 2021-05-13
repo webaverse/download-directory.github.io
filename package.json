@@ -17,7 +17,12 @@
 		}
 	},
 	"dependencies": {
+		"@rollup/plugin-commonjs": "^19.0.0",
+		"@rollup/plugin-json": "^4.1.0",
+		"@rollup/plugin-node-resolve": "^13.0.0",
 		"list-github-dir-content": "^3.0.0",
+		"rollup-plugin-node-builtins": "^2.1.2",
+		"rollup-plugin-node-globals": "^1.4.0",
 		"save-file": "^2.3.1"
 	},
 	"devDependencies": {
