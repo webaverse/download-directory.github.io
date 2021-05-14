@@ -97,7 +97,7 @@ async function init(u) {
 		const parsedUrl = new URL(u);
 		[, user, repository, ref, dir] = urlParserRegex.exec(parsedUrl.pathname);
 
-		console.log('Source:', {user, repository, ref, dir});
+		// console.log('Source:', {user, repository, ref, dir});
 	} catch {
 		return updateStatus();
 	}
